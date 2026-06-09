@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+    <%- include("partials/navbar") %>
+
+    <div class="container">
+
+        <h1>Inventory Dashboard</h1>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3>Total Products</h3>
+                <p><%= totalProducts %></p>
+            </div>
+
+            <div class="card">
+                <h3>Total Categories</h3>
+                <p><%= totalCategories %></p>
+            </div>
+
+            <div class="card">
+                <h3>Inventory Value</h3>
+                <p>₹<%= totalInventoryValue %></p>
+            </div>
+
+        </div>
+
+        <h2>Low Stock Products</h2>
+
+        <% lowStockProducts.forEach(product => { %>
+
+            <div class="low-stock-item">
+                <strong><%= product.name %></strong>
+                (<%= product.category_name %>)
+                - Stock: <%= product.stock %>
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</body>
+</html>
