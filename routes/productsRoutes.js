@@ -55,25 +55,30 @@ router.post("/add",async (req, res)=> {
             [name, description, price, stock, category_id]
         );
         res.redirect("/products");
-    } catch (error) {
+    } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
     }
 });
 
 router.get("/edit/:id",async (req, res) => {
-    const id = req.params.id;
-    const toEdit = await db.query(`
-        SELECT * FROM products Where id = $1
-        `, [id]);
-    
-    const categoriesResult = await db.query(`SELECT id, name FROM categories`);    
-    
+    try {
+        const id = req.params.id;
+        const toEdit = await db.query(`
+            SELECT * FROM products Where id = $1
+            `, [id]);
+        
+        const categoriesResult = await db.query(`SELECT id, name FROM categories`);    
+        
 
-    res.render("edit-product", {
-        product : toEdit.rows[0],
-        categories: categoriesResult.rows
-    });
+        res.render("edit-product", {
+            product : toEdit.rows[0],
+            categories: categoriesResult.rows
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
 router.post("/edit/:id", async (req, res) => {
