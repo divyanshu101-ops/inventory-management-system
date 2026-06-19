@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+
+    <link rel="stylesheet" href="/styles/auth.css">
+</head>
+<body>
+
+    <div class="auth-container">
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <h1>Create Account</h1>
+                <p>Join Inventory Management System</p>
+            </div>
+
+            <% if (error) { %>
+                <div class="error-box">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <form action="/register" method="POST">
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        value="<%= values.username || '' %>"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email"
+                        value="<%= values.email || '' %>"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create password"
+                            value="<%= values.password || '' %>"
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="toggle-btn"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="password-rules">
+
+                    <h4>Password Requirements</h4>
+
+                    <ul>
+                        <li id="rule-length">✖ At least 8 characters</li>
+                        <li id="rule-uppercase">✖ At least 1 uppercase letter</li>
+                        <li id="rule-number">✖ At least 1 number</li>
+                        <li id="rule-special">✖ At least 1 special character</li>
+                    </ul>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="register-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+                <p>
+                    Already have an account?
+                    <a href="/login">Login</a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/js/register.js"></script>
+
+</body>
+</html>
