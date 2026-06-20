@@ -1,6 +1,7 @@
 node_modules/
 .env
 Notes_1.txt
+Notes_2.txt
 day1_seedData.sql
 Concepts_Of_DataBase.txt
 User_table_design.txt

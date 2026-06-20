@@ -3,6 +3,14 @@ import db  from "../config/db.js";
 
 const router = express.Router();
 
+router.use((req, res, next) => {
+    if (!req.session.userId) {
+        return res.redirect("/login");
+    }
+    
+    next();
+});
+
 router.get("/", async (req, res) => {
     try {
         const infoAboutProduct = await db.query(`

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
+    <title>Inventory Management System</title>
 
     <link rel="stylesheet" href="/styles/auth.css">
 </head>
@@ -14,8 +14,8 @@
         <div class="auth-card">
 
             <div class="auth-header">
-                <h1>Create Account</h1>
-                <p>Join Inventory Management System</p>
+                <h1>Welcome Back</h1>
+                <p>Login to continue managing your inventory</p>
             </div>
 
             <% if (error) { %>
@@ -24,28 +24,15 @@
                 </div>
             <% } %>
 
-            <form action="/register" method="POST">
-
-                <div class="form-group">
-                    <label for="username">Username</label>
-
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Enter username"
-                        value="<%= values?.username || '' %>"
-                    >
-                </div>
+            <form action="/login" method="POST">
 
                 <div class="form-group">
                     <label for="email">Email Address</label>
-
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="Enter email"
+                        placeholder="Enter your email"
                         value="<%= values?.email || '' %>"
                     >
                 </div>
@@ -59,7 +46,7 @@
                             type="password"
                             id="password"
                             name="password"
-                            placeholder="Create password"
+                            placeholder="Enter your password"
                         >
 
                         <button
@@ -69,36 +56,22 @@
                         >
                             Show
                         </button>
-
                     </div>
-                </div>
-
-                <div class="password-rules">
-
-                    <h4>Password Requirements</h4>
-
-                    <ul>
-                        <li id="rule-length">✖ At least 8 characters</li>
-                        <li id="rule-uppercase">✖ At least 1 uppercase letter</li>
-                        <li id="rule-number">✖ At least 1 number</li>
-                        <li id="rule-special">✖ At least 1 special character</li>
-                    </ul>
-
                 </div>
 
                 <button
                     type="submit"
                     class="register-btn"
                 >
-                    Create Account
+                    Login
                 </button>
 
             </form>
 
             <div class="auth-footer">
                 <p>
-                    Already have an account?
-                    <a href="/login">Login</a>
+                    Don't have an account?
+                    <a href="/register">Register</a>
                 </p>
             </div>
 
@@ -106,7 +79,7 @@
 
     </div>
 
-    <script src="/js/register.js"></script>
+    <script src="/js/login.js"></script>
 
 </body>
 </html>

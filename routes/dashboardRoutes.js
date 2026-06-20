@@ -3,7 +3,10 @@ import db from "../config/db.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/dashboard", async (req, res) => {
+    if (!req.session.userId) {
+        return res.redirect("/login");
+    }
     try {
         const productResult = await db.query(
             "SELECT COUNT(*) FROM products"
