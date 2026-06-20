@@ -2,11 +2,21 @@
 
 A full-stack Inventory Management System built using **Node.js**, **Express.js**, **PostgreSQL**, **EJS**, **HTML**, and **CSS**.
 
-This application helps manage products, categories, inventory stock, and inventory statistics through a clean dashboard interface.
+This application helps manage products, categories, inventory stock, and inventory statistics through a clean dashboard interface. It also includes **session-based authentication**, allowing users to securely register, log in, and access protected routes.
 
 ---
 
 ## Features
+
+### Authentication & Security
+
+* User Registration
+* User Login
+* Password Hashing using bcrypt
+* Session-based Authentication using express-session
+* Protected Dashboard Routes
+* Protected Product Routes
+* Logout Functionality
 
 ### Dashboard
 
@@ -37,6 +47,7 @@ This application helps manage products, categories, inventory stock, and invento
 * Styled forms
 * Delete confirmation popup
 * Responsive layout
+* Modern authentication pages
 
 ---
 
@@ -46,6 +57,11 @@ This application helps manage products, categories, inventory stock, and invento
 
 * Node.js
 * Express.js
+
+### Authentication
+
+* bcrypt
+* express-session
 
 ### Database
 
@@ -65,6 +81,16 @@ This application helps manage products, categories, inventory stock, and invento
 ---
 
 ## Database Schema
+
+### Users Table
+
+| Column        | Type                |
+| ------------- | ------------------- |
+| id            | SERIAL PRIMARY KEY  |
+| username      | VARCHAR(100) UNIQUE |
+| email         | VARCHAR(100) UNIQUE |
+| password_hash | TEXT                |
+| role          | VARCHAR(50)         |
 
 ### Categories Table
 
@@ -88,6 +114,31 @@ This application helps manage products, categories, inventory stock, and invento
 
 ---
 
+## Authentication Flow
+
+### Registration
+
+1. User enters username, email, and password.
+2. Password is validated.
+3. Password is hashed using bcrypt.
+4. User data is stored in PostgreSQL.
+5. User is redirected to the login page.
+
+### Login
+
+1. User enters email and password.
+2. User record is fetched from PostgreSQL.
+3. bcrypt compares the password with the stored hash.
+4. Session is created after successful authentication.
+5. User is redirected to the dashboard.
+
+### Logout
+
+1. Active session is destroyed.
+2. User is redirected to the login page.
+
+---
+
 ## Project Structure
 
 ```text
@@ -97,21 +148,31 @@ Inventory_Management_System
 │   └── db.js
 │
 ├── public
-│   └── styles
-│       └── main.css
+│   ├── styles
+│   │   ├── main.css
+│   │   └── auth.css
+│   │
+│   └── js
+│       ├── register.js
+│       └── login.js
 │
 ├── routes
+│   ├── authRoutes.js
 │   ├── dashboardRoutes.js
 │   └── productsRoutes.js
 │
 ├── views
+│   ├── register.ejs
+│   ├── login.ejs
 │   ├── dashboard.ejs
 │   ├── products.ejs
 │   ├── add-product.ejs
 │   ├── edit-product.ejs
+│   │
 │   └── partials
 │       └── navbar.ejs
 │
+├── .env
 ├── index.js
 ├── package.json
 └── README.md
@@ -149,6 +210,8 @@ DB_HOST=localhost
 DB_NAME=inventory_db
 DB_PASSWORD=your_password
 DB_PORT=5432
+
+SESSION_SECRET=your_secret_key
 ```
 
 ### Start Server
@@ -170,6 +233,7 @@ nodemon index.js
 ### Create
 
 * Add Product
+* Register User
 
 ### Read
 
@@ -186,13 +250,28 @@ nodemon index.js
 
 ---
 
+## Security Features
+
+* Password hashing using bcrypt
+* Session-based authentication
+* Protected routes
+* User login validation
+* Duplicate email validation
+* Duplicate username validation
+* Strong password requirements
+
+---
+
 ## Future Improvements
 
+* Multi-user inventory management (user-specific products and categories)
+* Role-Based Access Control (Admin / Employee)
 * Product Search
 * Pagination
 * Product Details Page
-* Authentication & Authorization
-* User Roles (Admin/Manager)
+* Forgot Password
+* Google OAuth Login
+* Redis Session Store
 * Inventory Reports
 * Product Image Upload
 
@@ -203,3 +282,5 @@ nodemon index.js
 **Divyanshu Gautam**
 
 B.Tech CSE Student | Aspiring Backend Developer
+
+Focused on Backend Development, Databases, System Design, and Scalable Web Applications.
